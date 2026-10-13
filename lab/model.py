@@ -59,11 +59,19 @@ def apply_setup(model, targets, r=16, alpha=32, dropout=0.05, train_projector=Fa
                                              target_modules=target_regex(targets)))
     if train_projector:
         for _, p in projector_params(model):
-            p.data = p.data.float()
             p.requires_grad = True
+    # GradScaler không unscale được gradient fp16: mọi tham số huấn luyện phải ở float32
+    for p in model.parameters():
+        if p.requires_grad and p.dtype != torch.float32:
+            p.data = p.data.float()
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print(f"LoRA modules: {len(matched)} | tham số huấn luyện: {trainable:,}")
-    return model, {"lora_modules": len(matched), "trainable_params": trainable}
+    lora_n = sum(p.numel() for n, p in model.named_parameters() if p.requires_grad and "lora_" in n)
+    proj_n = sum(p.numel() for n, p in projector_params(model) if p.requires_grad)
+    dtypes = sorted({str(p.dtype) for p in model.parameters() if p.requires_grad})
+    print(f"LoRA modules: {len(matched)} | tham số huấn luyện: {trainable:,} "
+          f"(LoRA {lora_n:,} + projector {proj_n:,}) | dtype: {dtypes}")
+    return model, {"lora_modules": len(matched), "trainable_params": trainable,
+                   "lora_params": lora_n, "projector_params": proj_n}
 
 
 def extra_trainable_state(model):
