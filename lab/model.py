@@ -8,6 +8,9 @@ LLM_RE = (r".*language_model\.layers\.\d+\."
 VIT_RE = (r".*visual\.blocks\.\d+\."
           r"(attn\.(qkv|proj)|mlp\.(linear_fc1|linear_fc2))")
 PROJECTOR_KEYS = ("visual.merger", "visual.deepstack_merger_list")
+# transformers 5.x so khớp bằng re.match neo ở đầu tên đầy đủ ("model.visual.…"), nên "visual" trơn
+# KHÔNG khớp và ViT bị lượng tử hoá 4-bit. Phải ghi "model.visual".
+SKIP_QUANT = ["model.visual", "lm_head"]
 EXPECTED_MODULES = {"llm": 252, "llm+vit": 348}
 
 
@@ -35,7 +38,7 @@ def load_model(model_id):
     from transformers import BitsAndBytesConfig, Qwen3VLForConditionalGeneration
     quant = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
                                bnb_4bit_compute_dtype=torch.float16, bnb_4bit_use_double_quant=True,
-                               llm_int8_skip_modules=["visual", "lm_head"])
+                               llm_int8_skip_modules=SKIP_QUANT)
     return Qwen3VLForConditionalGeneration.from_pretrained(
         model_id, quantization_config=quant, dtype=torch.float16, device_map={"": 0})
 

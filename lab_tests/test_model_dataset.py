@@ -32,6 +32,17 @@ def test_lora_target_counts_match_guide():
     assert not any("merger" in n for n in matched_names(names, "llm+vit"))
 
 
+def test_skip_quant_keeps_vit_projector_and_lm_head_unquantized():
+    from transformers.quantizers.quantizers_utils import should_convert_module
+    from lab.model import SKIP_QUANT
+    for name in ("model.visual.merger.linear_fc1", "model.visual.deepstack_merger_list.0.linear_fc2",
+                 "model.visual.blocks.3.attn.qkv", "lm_head"):
+        assert not should_convert_module(name, SKIP_QUANT), name
+    assert should_convert_module("model.language_model.layers.0.self_attn.q_proj", SKIP_QUANT)
+    # mẫu "visual" trơn của GUIDE không bắt được tên đầy đủ trong transformers 5.19
+    assert should_convert_module("model.visual.merger.linear_fc1", ["visual", "lm_head"])
+
+
 def test_collate_pads_sequences_and_concats_vision():
     def ex(n, n_img):
         return {"input_ids": torch.arange(1, n + 1)[None], "attention_mask": torch.ones(1, n, dtype=torch.long),
