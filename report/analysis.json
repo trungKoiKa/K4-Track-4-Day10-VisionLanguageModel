@@ -1,0 +1,67 @@
+{
+  "splits": {
+    "train": {
+      "images": 1422,
+      "sessions": 13,
+      "boxes": {
+        "pothole": 1074,
+        "crack": 1750,
+        "manhole": 691
+      },
+      "median_area_pct": {
+        "pothole": 0.376,
+        "crack": 1.347,
+        "manhole": 0.391
+      }
+    },
+    "val": {
+      "images": 276,
+      "sessions": 2,
+      "boxes": {
+        "pothole": 66,
+        "crack": 470,
+        "manhole": 103
+      },
+      "median_area_pct": {
+        "pothole": 0.363,
+        "crack": 1.321,
+        "manhole": 0.662
+      }
+    },
+    "test": {
+      "images": 311,
+      "sessions": 3,
+      "boxes": {
+        "pothole": 121,
+        "crack": 299,
+        "manhole": 163
+      },
+      "median_area_pct": {
+        "pothole": 0.419,
+        "crack": 1.981,
+        "manhole": 0.669
+      }
+    },
+    "all": {
+      "median_area_pct": {
+        "pothole": 0.38,
+        "crack": 1.417,
+        "manhole": 0.458
+      }
+    }
+  },
+  "scale_misread": {
+    "norm1000": {
+      "f1": 0.4233576642335766,
+      "precision": 0.4522417153996101,
+      "recall": 0.3979416809605489,
+      "tp": 232
+    },
+    "pixel": {
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0
+    }
+  }
+}

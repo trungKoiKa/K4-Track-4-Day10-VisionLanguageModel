@@ -82,7 +82,23 @@ Diện tích box trung vị (% diện tích ảnh, từ `analysis.json`):
 
 - Kích thước không giải thích được vì sao ổ gà kém: ở train, ổ gà (0,376%) gần bằng nắp cống (0,391%), nhưng F1 nắp cống cao gấp 2,6 lần. Crack lớn gấp ~3,5 lần cả hai nhưng F1 vẫn thấp hơn nắp cống.
 - Giả thuyết (chưa kiểm chứng bằng ảnh lỗi): ổ gà có hình dạng, màu sắc và ngữ cảnh đa dạng (nước đọng, vá đường, bóng cây) nên khó phân biệt với nền; nắp cống có viền kim loại rõ, ít biến thể nên dễ hơn. Crack mảnh, dài, ranh giới box mơ hồ nên IoU ≥ 0,5 khó đạt.
-- **Ảnh minh hoạ: chưa đưa vào báo cáo.** `lab/viz.py` đã tạo 8 ảnh (3 đúng, 5 sai) trên Kaggle tại `report/figures/`, nhưng file chưa được tải về máy nên chưa chèn được vào `REPORT.md`.
+- **Ảnh minh hoạ** (E3 trên test, do `lab/viz.py` vẽ; khung xanh = nhãn đúng, khung đỏ = dự đoán; tiêu đề ảnh ghi TP/FP/FN của ảnh đó):
+
+| Ảnh sai | Quan sát |
+|---|---|
+| ![bad1](report/figures/e3_bad1_vlcsnap-2025-02-18-23h30m29s649.png) | TP=0, FP=6, FN=3. Mặt đường nhiều vết, model sinh nhiều box chồng lên nhau quanh cùng vùng nhưng không box nào đạt IoU ≥ 0,5. |
+| ![bad2](report/figures/e3_bad2_vlcsnap-2025-02-18-23h24m29s314.png) | TP=1, FP=1, FN=3. Vùng hư hại dày đặc, các box GT lồng nhau; model bỏ sót ba box. |
+| ![bad3](report/figures/e3_bad3_vlcsnap-2025-02-18-23h28m16s517.png) | TP=1, FP=1, FN=2. Đối tượng nhỏ ở xa, box dự đoán lệch nhẹ so với GT. |
+| ![bad4](report/figures/e3_bad4_vlcsnap-2025-02-18-23h14m25s029.png) | TP=0, FP=1, FN=1. Vật thể rất nhỏ (cỡ vài chục pixel); box đỏ nằm gần box xanh nhưng lệch, IoU dưới 0,5. |
+| ![bad5](report/figures/e3_bad5_vlcsnap-2025-02-19-17h14m23s060.png) | TP=0, FP=1, FN=1. Cùng kiểu lỗi: vị trí đúng nhưng box lệch nên bị tính vừa FP vừa FN. |
+
+| Ảnh đúng | Quan sát |
+|---|---|
+| ![ok1](report/figures/e3_ok1_vlcsnap-00202.png) | Nắp cống rõ trên mặt đường; box dự đoán gần như trùng GT. |
+| ![ok2](report/figures/e3_ok2_vlcsnap-2025-02-18-23h14m34s881.png) | Một đối tượng nhỏ giữa làn; khung đỏ nằm gọn trong khung xanh, lệch ít. |
+| ![ok3](report/figures/e3_ok3_vlcsnap-2025-02-18-23h27m33s135.png) | Một đối tượng nằm ngang mặt đường; khung đỏ và xanh gần trùng nhau. |
+
+Nhận xét: phần lớn lỗi ở các ảnh sai là **lệch vị trí** (đúng vùng, IoU < 0,5) trên đối tượng nhỏ, hoặc **thừa/thiếu box** ở vùng hư hại dày đặc, không phải hoàn toàn không thấy đối tượng. Nhãn chữ trên ảnh quá nhỏ để đọc chắc lớp từng box, nên tôi không kết luận nhầm lớp nào với lớp nào từ các ảnh này. Đây chỉ là 5 ảnh sai được chọn, không phải thống kê trên toàn test.
 
 ### Câu 10 — E4: bạn đổi biến nào, kết quả thế nào, và kết luận có đáng tin không?
 Biến đổi là **rank LoRA**, giữ nguyên mọi thứ khác của E3 và giữ tỉ lệ α/r = 2:
@@ -100,5 +116,5 @@ Rank 4 và 16 gần như bằng nhau. Rank 64 cao hơn 0,024 nhưng CI95 chồng
 - **Cấu hình lượng tử hoá không báo lỗi**: với transformers 5.19, `llm_int8_skip_modules=["visual", …]` âm thầm không có tác dụng. Nếu không in số tham số theo từng khối, E2/E3 vẫn chạy được nhưng không train đúng. Bài học: luôn in và đối chiếu số tham số huấn luyện với kỳ vọng (≈109 triệu cho projector).
 - **`torchao` có sẵn trên Colab** làm `peft 0.21.2` lỗi khi gắn LoRA vào ViT; phải gỡ `torchao`.
 - **Hạ tầng**: runtime Colab bị ngắt hai lần (máy ngủ, giữa lúc suy luận E3), mất khoảng 1,3 giờ GPU; Drive mount lỗi nhiều lần. Chuyển E3/E4 sang Kaggle với checkpoint có thể resume.
-- **Phần chưa làm xong** trong báo cáo: ảnh minh hoạ (câu 9). Số liệu câu 3, 6, 9 đã đo từ `analysis.json`; ảnh cần tải từ Kaggle về `report/figures/`.
+- Số liệu câu 3, 6, 9 đo từ `analysis.json`; ảnh minh hoạ câu 9 nằm ở `report/figures/`. Chưa làm E5 (GRPO, tuỳ chọn) và chưa chạy nhiều seed.
 - Scorer chỉ tính box trùng là FP, không phạt riêng; E0 có nhiều output lặp lại cùng box nên điểm có thể bị đánh giá thấp hơn thực tế ở các output đó.
