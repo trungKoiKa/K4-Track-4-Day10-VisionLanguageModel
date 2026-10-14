@@ -32,7 +32,14 @@ Số lấy từ đề (GUIDE), chưa tự đo lại: ViT ≈ 415 triệu (kèm p
 Khi box khớp, IoU trung bình đã 0,619, nghĩa là model hiểu định dạng và thang toạ độ; cái yếu là tìm đúng đối tượng.
 
 ### Câu 3 — Thang 0–1000: nếu chấm output theo pixel (hoặc ngược lại) thì F1 ra sao và vì sao? Bạn đã kiểm chứng điều này thế nào?
-**Chưa đo.** Tôi chưa chạy lại scorer theo thang pixel trên file dự đoán (file dự đoán nằm trên Kaggle, không có ở máy). Theo mã `scripts/score.py`: với `--coord pixel` scorer chia toạ độ cho chiều rộng/cao rồi nhân 1000, nên một dự đoán ở thang 0–1000 sẽ bị coi như pixel và co lại gần như về 0; IoU với GT khi đó gần như bằng 0 và F1 sụp về ~0. Đây là suy luận từ mã, chưa được xác nhận bằng số.
+Đo trên cùng file dự đoán E3 của tập test (`lab/analyze.py`, kết quả trong `report/analysis.json` trên Kaggle):
+
+| Cách đọc toạ độ | F1 | Precision | Recall | TP |
+|---|---|---|---|---|
+| Thang 0–1000 (đúng) | 0,423 | 0,452 | 0,398 | 232 |
+| Đọc như pixel (sai) | 0,000 | 0,000 | 0,000 | 0 |
+
+Nếu hiểu nhầm thang, điểm sụp về 0 hoàn toàn: mọi box bị đọc như toạ độ pixel nên không còn khớp GT với IoU ≥ 0,5. Đây là điểm kiểm chứng để tránh lỗi này: `analysis.json` luôn chấm kèm hai cách đọc và phải thấy thang 0–1000 cho F1 cao, pixel cho F1 ~0.
 
 ### Câu 4 — Mask loss: vì sao chỉ tính loss trên phần trả lời? Điều gì xảy ra nếu tính trên cả prompt và token ảnh?
 Với ảnh 640×360 có **220 token ảnh** (đã kiểm chứng bằng test `test_encode_example_masks_prompt_and_image_tokens`, chạy pass với processor thật). `encode_example` đặt `labels = -100` cho toàn bộ prompt và token ảnh, assert rằng prompt là tiền tố của chuỗi đầy đủ, chỉ học JSON đáp án và `<|im_end|>`.
@@ -46,13 +53,13 @@ Xử lý: đổi mẫu thành `"model.visual"` (có test `test_skip_quant_keeps_
 Vì sao float32: `GradScaler` của AMP fp16 không unscale được gradient fp16 (gặp đúng `Attempting to unscale FP16 gradients`); và với lr 2e-4 các cập nhật AdamW nhỏ hơn bước làm tròn của fp16 nên bị mất, master weights float32 cộng dồn được.
 
 ### Câu 6 — Split theo phiên quay: vì sao chia ngẫu nhiên sẽ cho F1 cao giả? Số ảnh và số box từng lớp ở mỗi split là bao nhiêu?
-| Split | Ảnh | pothole | crack | manhole |
-|---|---|---|---|---|
-| train | 1.422 | 1.074 | 1.750 | 691 |
-| val | 276 | 66 | 470 | 103 |
-| test | 311 | 121 | 299 | 163 |
+| Split | Ảnh | Phiên quay | pothole | crack | manhole |
+|---|---|---|---|---|---|
+| train | 1.422 | 13 | 1.074 | 1.750 | 691 |
+| val | 276 | 2 | 66 | 470 | 103 |
+| test | 311 | 3 | 121 | 299 | 163 |
 
-(Số ảnh/box lấy từ output `prepare_data.py --kaggle` đã chạy.) Số phiên mỗi split **chưa đếm** (chưa chạy phần đó trên dữ liệu).
+(Số ảnh, box lấy từ `analysis.json`; số phiên là số `session` khác nhau trong từng split.) Tập test chỉ có 3 phiên quay. Split theo phiên nên về nguyên tắc không phiên nào nằm ở hai split cùng lúc (chưa kiểm tra giao nhau bằng code).
 
 Vì ảnh là frame cắt từ video, hai frame liền kề gần như trùng. Chia ngẫu nhiên thì ảnh gần như giống hệt đã có trong train → F1 trên test bị thổi phồng vì model nhớ thay vì tổng quát. Chia theo phiên buộc test là đoạn đường chưa thấy.
 
@@ -65,9 +72,17 @@ CI95 (bootstrap theo ảnh, 1000 lần) rộng khoảng 0,07–0,08: E1 0,073, E
 
 ### Câu 9 — Phân tích lỗi theo lớp: lớp nào kém nhất và vì sao (kích thước box, số mẫu, ngữ nghĩa)? Kèm ảnh minh hoạ.
 **Pothole** kém nhất ở E3 (F1 0,260; P 0,298, R 0,231; 28 TP, 66 FP, 93 FN); crack 0,357; manhole 0,683. Số mẫu không giải thích được: train có 1.074 pothole, nhiều hơn manhole (691) mà manhole tốt hơn gấp 2,6 lần.
-- Kích thước box và diện tích trung vị từng lớp: **chưa đo**.
-- Giả thuyết (chưa kiểm chứng): ổ gà có hình dạng, màu sắc và ngữ cảnh đa dạng (nước đọng, vá đường, bóng cây) nên khó phân biệt; nắp cống có viền kim loại rõ, ít biến thể nên dễ hơn. Crack mảnh, dài, ranh giới box mơ hồ nên IoU ≥ 0,5 khó đạt.
-- **Ảnh minh hoạ: chưa tạo.** Cần file dự đoán E3 và ảnh test để chạy `lab/viz.py`.
+Diện tích box trung vị (% diện tích ảnh, từ `analysis.json`):
+
+| Split | pothole | crack | manhole |
+|---|---|---|---|
+| train | 0,376% | 1,347% | 0,391% |
+| val | 0,363% | 1,321% | 0,662% |
+| test | 0,419% | 1,981% | 0,669% |
+
+- Kích thước không giải thích được vì sao ổ gà kém: ở train, ổ gà (0,376%) gần bằng nắp cống (0,391%), nhưng F1 nắp cống cao gấp 2,6 lần. Crack lớn gấp ~3,5 lần cả hai nhưng F1 vẫn thấp hơn nắp cống.
+- Giả thuyết (chưa kiểm chứng bằng ảnh lỗi): ổ gà có hình dạng, màu sắc và ngữ cảnh đa dạng (nước đọng, vá đường, bóng cây) nên khó phân biệt với nền; nắp cống có viền kim loại rõ, ít biến thể nên dễ hơn. Crack mảnh, dài, ranh giới box mơ hồ nên IoU ≥ 0,5 khó đạt.
+- **Ảnh minh hoạ: chưa đưa vào báo cáo.** `lab/viz.py` đã tạo 8 ảnh (3 đúng, 5 sai) trên Kaggle tại `report/figures/`, nhưng file chưa được tải về máy nên chưa chèn được vào `REPORT.md`.
 
 ### Câu 10 — E4: bạn đổi biến nào, kết quả thế nào, và kết luận có đáng tin không?
 Biến đổi là **rank LoRA**, giữ nguyên mọi thứ khác của E3 và giữ tỉ lệ α/r = 2:
@@ -85,5 +100,5 @@ Rank 4 và 16 gần như bằng nhau. Rank 64 cao hơn 0,024 nhưng CI95 chồng
 - **Cấu hình lượng tử hoá không báo lỗi**: với transformers 5.19, `llm_int8_skip_modules=["visual", …]` âm thầm không có tác dụng. Nếu không in số tham số theo từng khối, E2/E3 vẫn chạy được nhưng không train đúng. Bài học: luôn in và đối chiếu số tham số huấn luyện với kỳ vọng (≈109 triệu cho projector).
 - **`torchao` có sẵn trên Colab** làm `peft 0.21.2` lỗi khi gắn LoRA vào ViT; phải gỡ `torchao`.
 - **Hạ tầng**: runtime Colab bị ngắt hai lần (máy ngủ, giữa lúc suy luận E3), mất khoảng 1,3 giờ GPU; Drive mount lỗi nhiều lần. Chuyển E3/E4 sang Kaggle với checkpoint có thể resume.
-- **Phần chưa làm xong** trong báo cáo: số đo lệch thang (câu 3), phân bố phiên và diện tích box (câu 6, 9), ảnh minh hoạ (câu 9). Các phần này cần dữ liệu và file dự đoán trên Kaggle.
+- **Phần chưa làm xong** trong báo cáo: ảnh minh hoạ (câu 9). Số liệu câu 3, 6, 9 đã đo từ `analysis.json`; ảnh cần tải từ Kaggle về `report/figures/`.
 - Scorer chỉ tính box trùng là FP, không phạt riêng; E0 có nhiều output lặp lại cùng box nên điểm có thể bị đánh giá thấp hơn thực tế ở các output đó.
