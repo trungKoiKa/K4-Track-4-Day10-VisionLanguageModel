@@ -1,0 +1,139 @@
+Loading weights:   0%|          | 0/713 [00:00<?, ?it/s]Loading weights:   0%|          | 1/713 [00:00<08:02,  1.48it/s]Loading weights:   0%|          | 3/713 [00:00<02:31,  4.68it/s]Loading weights:   1%|▏         | 9/713 [00:00<00:46, 15.16it/s]Loading weights:   2%|▏         | 15/713 [00:01<00:28, 24.24it/s]Loading weights:   4%|▎         | 25/713 [00:01<00:17, 39.50it/s]Loading weights:   4%|▍         | 31/713 [00:01<00:15, 43.78it/s]Loading weights:   5%|▌         | 37/713 [00:01<00:14, 47.11it/s]Loading weights:   7%|▋         | 47/713 [00:01<00:11, 57.52it/s]Loading weights:   8%|▊         | 54/713 [00:01<00:11, 59.80it/s]Loading weights:   9%|▊         | 61/713 [00:01<00:11, 54.92it/s]Loading weights:  10%|▉         | 70/713 [00:01<00:10, 60.35it/s]Loading weights:  11%|█         | 80/713 [00:01<00:09, 66.79it/s]Loading weights:  12%|█▏        | 87/713 [00:02<00:09, 66.44it/s]Loading weights:  13%|█▎        | 94/713 [00:02<00:10, 59.65it/s]Loading weights:  14%|█▍        | 103/713 [00:02<00:09, 63.84it/s]Loading weights:  16%|█▌        | 113/713 [00:02<00:08, 68.76it/s]Loading weights:  17%|█▋        | 120/713 [00:02<00:08, 67.52it/s]Loading weights:  18%|█▊        | 127/713 [00:02<00:09, 60.22it/s]Loading weights:  19%|█▉        | 136/713 [00:02<00:09, 63.98it/s]Loading weights:  20%|██        | 146/713 [00:02<00:08, 69.14it/s]Loading weights:  22%|██▏       | 154/713 [00:03<00:08, 68.36it/s]Loading weights:  23%|██▎       | 161/713 [00:03<00:08, 62.30it/s]Loading weights:  24%|██▎       | 169/713 [00:03<00:08, 63.24it/s]Loading weights:  25%|██▌       | 179/713 [00:03<00:07, 68.53it/s]Loading weights:  26%|██▌       | 186/713 [00:03<00:07, 67.58it/s]Loading weights:  27%|██▋       | 193/713 [00:03<00:08, 59.80it/s]Loading weights:  28%|██▊       | 202/713 [00:03<00:08, 63.22it/s]Loading weights:  30%|██▉       | 212/713 [00:03<00:07, 68.58it/s]Loading weights:  31%|███       | 219/713 [00:04<00:07, 67.71it/s]Loading weights:  32%|███▏      | 226/713 [00:04<00:08, 60.19it/s]Loading weights:  33%|███▎      | 235/713 [00:04<00:07, 63.91it/s]Loading weights:  34%|███▍      | 245/713 [00:04<00:06, 68.69it/s]Loading weights:  35%|███▌      | 252/713 [00:04<00:06, 67.57it/s]Loading weights:  36%|███▋      | 259/713 [00:04<00:07, 60.20it/s]Loading weights:  38%|███▊      | 268/713 [00:04<00:06, 63.59it/s]Loading weights:  39%|███▉      | 278/713 [00:05<00:06, 68.76it/s]Loading weights:  40%|███▉      | 285/713 [00:05<00:06, 66.48it/s]Loading weights:  41%|████      | 292/713 [00:05<00:07, 59.30it/s]Loading weights:  42%|████▏     | 301/713 [00:05<00:06, 60.10it/s]Loading weights:  44%|████▎     | 311/713 [00:05<00:06, 66.14it/s]Loading weights:  45%|████▍     | 318/713 [00:05<00:05, 65.88it/s]Loading weights:  46%|████▌     | 325/713 [00:05<00:06, 59.08it/s]Loading weights:  47%|████▋     | 334/713 [00:05<00:06, 62.93it/s]Loading weights:  48%|████▊     | 344/713 [00:06<00:05, 68.13it/s]Loading weights:  49%|████▉     | 351/713 [00:06<00:05, 67.23it/s]Loading weights:  50%|█████     | 358/713 [00:06<00:05, 59.92it/s]Loading weights:  51%|█████▏    | 367/713 [00:06<00:05, 63.50it/s]Loading weights:  53%|█████▎    | 377/713 [00:06<00:04, 68.88it/s]Loading weights:  54%|█████▍    | 384/713 [00:06<00:04, 68.07it/s]Loading weights:  55%|█████▍    | 391/713 [00:06<00:05, 60.50it/s]Loading weights:  63%|██████▎   | 452/713 [00:06<00:01, 196.08it/s]Loading weights:  75%|███████▌  | 536/713 [00:07<00:00, 362.29it/s]Loading weights:  87%|████████▋ | 620/713 [00:07<00:00, 486.30it/s]Loading weights:  96%|█████████▋| 688/713 [00:07<00:00, 529.35it/s]Loading weights: 100%|██████████| 713/713 [00:07<00:00, 96.80it/s] 
+LoRA modules: 348 | tham số huấn luyện: 118,935,552 (LoRA 9,830,400 + projector 109,105,152) | dtype: ['torch.float32']
+E3: 1422 ảnh train, coord=norm1000
+--resume: chưa có checkpoint, train từ đầu
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+step 1/300 loss 1.7231 lr 2.67e-05 0.2 phút
+step 10/300 loss 0.8045 lr 1.47e-04 1.7 phút
+step 20/300 loss 0.7244 lr 2.00e-04 3.5 phút
+step 30/300 loss 0.6458 lr 1.99e-04 5.2 phút
+step 40/300 loss 0.6127 lr 1.96e-04 7.0 phút
+step 50/300 loss 0.6290 lr 1.93e-04 8.7 phút
+step 60/300 loss 0.5840 lr 1.88e-04 10.6 phút
+step 70/300 loss 0.6078 lr 1.82e-04 12.3 phút
+step 80/300 loss 0.5475 lr 1.75e-04 14.1 phút
+step 90/300 loss 0.5713 lr 1.68e-04 15.9 phút
+step 100/300 loss 0.5373 lr 1.59e-04 17.6 phút
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+step 110/300 loss 0.5627 lr 1.50e-04 19.4 phút
+step 120/300 loss 0.6085 lr 1.40e-04 21.2 phút
+step 130/300 loss 0.6143 lr 1.30e-04 23.0 phút
+step 140/300 loss 0.4827 lr 1.19e-04 24.8 phút
+step 150/300 loss 0.5912 lr 1.08e-04 26.6 phút
+step 160/300 loss 0.4811 lr 9.72e-05 28.4 phút
+step 170/300 loss 0.5790 lr 8.63e-05 30.1 phút
+step 180/300 loss 0.4935 lr 7.55e-05 31.9 phút
+step 190/300 loss 0.5389 lr 6.49e-05 33.6 phút
+step 200/300 loss 0.5056 lr 5.48e-05 35.4 phút
+step 210/300 loss 0.5066 lr 4.53e-05 37.1 phút
+step 220/300 loss 0.4994 lr 3.64e-05 39.0 phút
+step 230/300 loss 0.5204 lr 2.83e-05 40.7 phút
+step 240/300 loss 0.5506 lr 2.11e-05 42.5 phút
+step 250/300 loss 0.4992 lr 1.48e-05 44.3 phút
+step 260/300 loss 0.5147 lr 9.56e-06 46.1 phút
+step 270/300 loss 0.4606 lr 5.42e-06 47.8 phút
+step 280/300 loss 0.4760 lr 2.42e-06 49.5 phút
+step 290/300 loss 0.4654 lr 6.07e-07 51.2 phút
+step 300/300 loss 0.4459 lr 0.00e+00 53.0 phút
+{'trainable_params': 118935552, 'peak_vram_gb': 8.01, 'train_minutes': 53.07, 'final_loss': 0.4458613768219948}
+Loading weights:   0%|          | 0/713 [00:00<?, ?it/s]Loading weights:   0%|          | 1/713 [00:00<08:08,  1.46it/s]Loading weights:   0%|          | 3/713 [00:00<02:34,  4.59it/s]Loading weights:   1%|▏         | 9/713 [00:00<00:47, 14.88it/s]Loading weights:   2%|▏         | 15/713 [00:01<00:29, 23.71it/s]Loading weights:   4%|▎         | 25/713 [00:01<00:17, 38.99it/s]Loading weights:   4%|▍         | 31/713 [00:01<00:15, 42.86it/s]Loading weights:   5%|▌         | 37/713 [00:01<00:14, 46.16it/s]Loading weights:   7%|▋         | 47/713 [00:01<00:11, 56.65it/s]Loading weights:   8%|▊         | 54/713 [00:01<00:11, 58.88it/s]Loading weights:   9%|▊         | 61/713 [00:01<00:12, 53.98it/s]Loading weights:  10%|▉         | 70/713 [00:01<00:10, 59.36it/s]Loading weights:  11%|█         | 80/713 [00:02<00:09, 65.49it/s]Loading weights:  12%|█▏        | 87/713 [00:02<00:09, 65.53it/s]Loading weights:  13%|█▎        | 94/713 [00:02<00:10, 58.24it/s]Loading weights:  14%|█▍        | 103/713 [00:02<00:09, 62.11it/s]Loading weights:  16%|█▌        | 113/713 [00:02<00:08, 67.33it/s]Loading weights:  17%|█▋        | 120/713 [00:02<00:08, 66.46it/s]Loading weights:  18%|█▊        | 127/713 [00:02<00:09, 59.08it/s]Loading weights:  19%|█▉        | 136/713 [00:02<00:09, 62.85it/s]Loading weights:  20%|██        | 146/713 [00:03<00:08, 67.77it/s]Loading weights:  21%|██▏       | 153/713 [00:03<00:08, 67.16it/s]Loading weights:  22%|██▏       | 160/713 [00:03<00:09, 59.60it/s]Loading weights:  24%|██▎       | 169/713 [00:03<00:08, 62.79it/s]Loading weights:  25%|██▌       | 179/713 [00:03<00:07, 67.92it/s]Loading weights:  26%|██▌       | 186/713 [00:03<00:07, 67.19it/s]Loading weights:  27%|██▋       | 193/713 [00:03<00:08, 59.81it/s]Loading weights:  28%|██▊       | 202/713 [00:03<00:08, 63.71it/s]Loading weights:  30%|██▉       | 212/713 [00:04<00:07, 68.75it/s]Loading weights:  31%|███       | 219/713 [00:04<00:07, 67.97it/s]Loading weights:  32%|███▏      | 226/713 [00:04<00:08, 60.07it/s]Loading weights:  33%|███▎      | 235/713 [00:04<00:07, 63.62it/s]Loading weights:  34%|███▍      | 245/713 [00:04<00:06, 68.68it/s]Loading weights:  35%|███▌      | 252/713 [00:04<00:06, 67.42it/s]Loading weights:  36%|███▋      | 259/713 [00:04<00:07, 60.06it/s]Loading weights:  38%|███▊      | 268/713 [00:04<00:07, 63.21it/s]Loading weights:  39%|███▉      | 278/713 [00:05<00:06, 68.09it/s]Loading weights:  40%|███▉      | 285/713 [00:05<00:06, 67.01it/s]Loading weights:  41%|████      | 292/713 [00:05<00:07, 58.90it/s]Loading weights:  42%|████▏     | 301/713 [00:05<00:06, 62.95it/s]Loading weights:  44%|████▎     | 311/713 [00:05<00:05, 68.32it/s]Loading weights:  45%|████▍     | 318/713 [00:05<00:05, 67.31it/s]Loading weights:  46%|████▌     | 325/713 [00:05<00:06, 58.68it/s]Loading weights:  47%|████▋     | 334/713 [00:05<00:06, 62.40it/s]Loading weights:  48%|████▊     | 344/713 [00:06<00:05, 67.49it/s]Loading weights:  49%|████▉     | 351/713 [00:06<00:05, 66.48it/s]Loading weights:  50%|█████     | 358/713 [00:06<00:06, 58.82it/s]Loading weights:  51%|█████▏    | 367/713 [00:06<00:05, 62.78it/s]Loading weights:  53%|█████▎    | 377/713 [00:06<00:04, 67.44it/s]Loading weights:  54%|█████▍    | 384/713 [00:06<00:04, 66.35it/s]Loading weights:  55%|█████▍    | 391/713 [00:06<00:05, 58.56it/s]Loading weights:  63%|██████▎   | 452/713 [00:06<00:01, 191.26it/s]Loading weights:  75%|███████▌  | 536/713 [00:07<00:00, 353.85it/s]Loading weights:  87%|████████▋ | 618/713 [00:07<00:00, 473.88it/s]Loading weights:  96%|█████████▋| 688/713 [00:07<00:00, 512.20it/s]Loading weights: 100%|██████████| 713/713 [00:07<00:00, 95.64it/s] 
+đã nạp lại 24 tensor projector từ /kaggle/working/lab10/e4_rank_4/extra_trainable.pt
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+4/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+8/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+12/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+16/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+20/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+24/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+28/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+32/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+36/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+40/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+44/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+48/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+52/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+56/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+60/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+64/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+68/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+72/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+76/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+80/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+84/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+88/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+92/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+96/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+100/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+104/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+108/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+112/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+116/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+120/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+124/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+128/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+132/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+136/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+140/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+144/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+148/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+152/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+156/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+160/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+164/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+168/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+172/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+176/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+180/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+184/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+188/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+192/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+196/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+200/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+204/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+208/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+212/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+216/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+220/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+224/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+228/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+232/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+236/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+240/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+244/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+248/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+252/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+256/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+260/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+264/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+268/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+272/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+276/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+280/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+284/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+288/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+292/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+296/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+300/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+304/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+308/311[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+311/311
+ghi 311 dòng -> work/e4_rank_4.jsonl
+[
+ {
+  "image_id": "vlcsnap-00200",
+  "raw": "[{\"label\":\"crack\",\"bbox_2d\":[350,653,536,761]}]"
+ },
+ {
+  "image_id": "vlcsnap-00201",
+  "raw": "[{\"label\":\"crack\",\"bbox_2d\":[534,683,650,806]}]"
+ },
+ {
+  "image_id": "vlcsnap-00202",
+  "raw": "[{\"label\":\"manhole\",\"bbox_2d\":[284,661,398,722]}]"
+ }
+]
+E4_RANK_4 [test] n=311 valid=0.997 P=0.458 R=0.389 F1=0.421 CI95=0.380-0.466 meanIoU=0.699 FP/img=0.86
+   pothole  P=0.316 R=0.256 F1=0.283
+   crack    P=0.366 R=0.338 F1=0.351
+   manhole  P=0.779 R=0.583 F1=0.667
+XONG e4_rank_4
